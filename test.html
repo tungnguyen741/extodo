@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+	<body>
+		<input id="box" placeholder="Ex: Have dinner at 6:30 pm" type="text">
+		<button id="btn_save">
+			Save
+		</button>
+		<div id="result"></div>
+
+<!-- ========================================== JS ==========================================-->
+     <script src="https://unpkg.com/axios/dist/axios.min.js">
+    </script>
+    <script>
+        var url = "http://localhost:3000/toDoList";
+		var input_box = document.getElementById('box'); //input
+		var btn_save = document.getElementById('btn_save'); //button
+		var result = document.getElementById('result'); 
+			
+ 		var refNum = parseInt(location.hash.slice(1));
+		 axios.get(url)
+		 .then(res=>{
+		 	var toDoList = res.data;
+		 	return toDoList;
+		 })
+		 .then(data=>{
+		 	 arrContentFiltered = data.filter(item=>{
+				return item.id == refNum;
+			});
+		 	 var objContent = arrContentFiltered[0];
+			result.innerHTML = (objContent.content);
+
+			btn_save.addEventListener('click',function myClick (){	
+				if(input_box.value ==='')
+					alert('Input value before Add new job');
+				else
+				{
+					refNum--;
+					var dataObj = data[refNum];
+					dataObj.content = input_box.value;
+					axios.patch(url, dataObj)
+					.then(res=>{
+						console.log(res)
+					});
+					
+					window.location.href = 'file:///C:/xampp/htdocs/localstorage/index.html';
+				}
+			  });
+		 });
+    </script>
+    <!-- ========================================== JS ==========================================-->
+</body>
+</html>

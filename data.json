@@ -1,0 +1,8 @@
+{
+  "toDoList": [
+    { "id": 1, "content": "Walk up at 6:00 am"},
+    { "id": 2, "content": "Have a breakfast at 6:30 am"},
+    { "id": 3, "content": "Go to school at 7:00am"},
+    { "id": 4, "content": "Sleeping...ZzZzZz"},
+  ]
+}

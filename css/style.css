@@ -1,0 +1,70 @@
+h1 {
+    margin-top: 0;
+    margin-bottom: 100px;
+}
+li {
+    font-size: 20px;
+    text-align: left;
+}
+ul {
+    padding-left: 500px;
+}
+#new_it {
+    margin: 10px;
+    color: red;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 5px 10px;
+    background: #ffe6e6;
+}
+.container {
+    padding-top: 80px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+input#box {
+    padding: 4px 1px;
+    transition: 0.5s all;
+}
+button#add_job, #clear_input {
+    padding: 4px 2px;
+}
+input#box:focus {
+    padding: 4px 5px;
+}
+button.btn_clear_each {
+    margin-left: 10px;
+}
+button.btn_del, button.btn_edit, #btn_save {
+    margin: 10px 10px;
+    padding: 5px 12px;
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+    border-radius: 25px;
+    border: 1px solid #edb7b7;
+    background: #fff8d5;
+    cursor: pointer
+}
+button.btn_edit:hover, .btn_del:hover, #btn_save:hover {
+    outline: red;
+    background: #ffd400;
+    color: #ffffff;
+}
+.wrapNewIt {
+    margin: 20px 0;
+}
+#new_it {
+    margin: 10px;
+    color: red;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 5px 10px;
+    background: #ffe6e6;
+    transition: 0.3s background;
+}
+a#new_it:hover {
+    background: #ef4949;
+    color: white;
+}

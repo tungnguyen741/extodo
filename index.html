@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <title>Bai Tap LocalStorage </title>
+	<link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>
+                 Bài tập về LocalStorage
+            </h1>
+            <div class="wrapNewIt">
+                <a href="./new_item.html" id="new_it">
+                    Go To New Item
+                </a>
+            </div>
+            
+                <ul id="listDaily">
+
+
+                </ul>
+<!-- ========================================== JS ==========================================-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"> </script>
+               
+    <script>
+
+            var url = "http://localhost:3000/toDoList";
+			var toDoList = [];
+			var listDai = document.getElementById('listDaily'); //ul
+			var input_box = document.getElementById('box'); //input
+			var btn_add = document.getElementById('add_job'); //button
+ 			
+
+			axios.get(url)
+			.then(res=>{
+				toDoList = res.data;
+				 
+				render(toDoList);
+				onItemEdit();
+			});		
+ 
+			function render(todo){
+				var toDoLi = todo.map( (item, index)=>{
+					return '<li>' + item.content +'<button class="btn_del" data-id= '+item.id+'>' +'x'+'</button>'+'<button class="btn_edit" data-id= '+item.id+'>Edit</button>' + '</li>';
+				});
+				 listDai.innerHTML = toDoLi.join('');
+			}
+			function myClick (){	
+				if(input_box.value ==='')
+					alert('Input value before Add new job');
+				else
+				{
+					var newItemObj = {"content": input_box.value};
+					toDoList.push(newItemObj);
+					render(toDoList);
+					input_box.value = '';
+					axios.post(url, newItemObj);
+				}
+			}	
+			function onItemEdit(){
+				var btn_edit = document.querySelectorAll('.btn_edit');
+				for (let i = 0 ; i < btn_edit.length ; i++){
+					btn_edit[i].addEventListener('click', ()=>{
+						i++;
+						var urlItem = "file:///C:/xampp/htdocs/localstorage/edit-item.html#"+i;
+						window.location.href = urlItem;
+
+					})
+				}
+			}
+			function onItemDelete(){
+				listDai.addEventListener('click', e =>{
+					var id = parseInt(e.target.dataset.id);
+					axios.delete(url +'/'+ id,  { params: { id: id } } );
+					id--;
+					toDoList.splice(id, 1);
+					render(toDoList);				
+				})
+			}
+			 //onItemDelete();
+		</script>
+<!-- ========================================== JS ==========================================-->
+ 
+        </div>
+    </body>
+</html>

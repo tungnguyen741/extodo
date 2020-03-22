@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+		<input id="box" placeholder="Ex: Have dinner at 6:30 pm" type="text">
+		<button id="add_job">
+			Add New Job
+		</button>
+
+
+
+     <script src="https://unpkg.com/axios/dist/axios.min.js">
+    </script>
+    <script>
+        var url = "http://localhost:3000/toDoList";
+ 
+ 
+var input_box = document.getElementById('box'); //input
+var btn_add = document.getElementById('add_job'); //button
+	btn_add.addEventListener('click',myClick);
+	function myClick (){	
+	if(input_box.value ==='')
+		alert('Input value before Add new job');
+	else
+	{
+		var newItemObj = {"content": input_box.value};
+		input_box.value = '';
+		axios.post(url, newItemObj);
+		window.location.href = 'file:///C:/xampp/htdocs/localstorage/index.html';
+	}
+}
+ 
+    </script>
+</body>
+</html>
